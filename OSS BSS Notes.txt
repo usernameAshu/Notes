@@ -1,0 +1,41 @@
+OSS - Operations Support Systems
+BSS - Business Support Systems 
+
+Any communication that happen over network, passes through BSS and OSS applications 
+Different departments use OSS and BSS apps
+
+OSS: (works with the base station) 
+- Fault management 
+- Configuration
+- Performance 
+- Provisioning 
+- Network Inventory 
+
+Combination of specialised software tools, hosted on dedicated servers
+Allows mobile network to monitor the network status and performance from a centralised office. 
+OSS is a vital part of modern mobile network architecture. 
+Network facing entity 
+Service-Assurance through fault and performance management 
+
+
+Example: Mobile link is down from the Radio station
+Here OSS apps, comes into picture
+Technicians can go the OSS tools and investigate the issue
+
+BSS: (CRM part of the mobile network)
+- Fullfilment (Order to Activate)
+- Resource (Allocation of Resources)
+- Assurance (Trouble to Resolve)
+- Billing (Usage to Cash)
+
+-Concept to Market 
+
+Mediation & Integration --> Network 
+
+Responsible for handling customer facing business tasks within a mobile network
+Customer centric, more focused on business side of telecom service
+
+
+
+What is the need of BSS and OSS ?
+

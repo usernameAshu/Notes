@@ -1,0 +1,395 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2821
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 HelveticaNeue-Bold;\f1\fnil\fcharset0 HelveticaNeue;\f2\fnil\fcharset0 .AppleSystemUIFontMonospaced-Semibold;
+\f3\fnil\fcharset0 Menlo-Bold;\f4\fnil\fcharset0 Menlo-Regular;\f5\fswiss\fcharset0 ArialMT;
+\f6\fswiss\fcharset0 Arial-BoldMT;\f7\fnil\fcharset0 AppleColorEmoji;}
+{\colortbl;\red255\green255\blue255;\red24\green26\blue27;\red255\green255\blue255;\red0\green0\blue0;
+\red0\green0\blue0;\red14\green14\blue14;\red251\green2\blue7;\red237\green237\blue237;\red13\green13\blue13;
+\red251\green2\blue7;}
+{\*\expandedcolortbl;;\cssrgb\c12549\c13333\c14118;\cssrgb\c100000\c100000\c100000;\cssrgb\c0\c0\c0;
+\csgray\c0;\cssrgb\c6700\c6700\c6700;\cssrgb\c100000\c14913\c0;\cssrgb\c94510\c94510\c94510;\cssrgb\c5882\c5882\c5882;
+\cssrgb\c100000\c14913\c0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww13960\viewh6800\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs36 \cf2 \cb3 \expnd0\expndtw0\kerning0
+Installing docker in Mac:
+\f1\b0\fs32 \
+\
+
+\f0\b brew install docker \
+brew install miniqube\
+brew install qemu \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f2\fs26 \cf4 minikube start --driver qemu --memory=4Gb\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f3 \cf5 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 minikube docker-env\
+-
+\f0\fs28 \cf6 \CocoaLigature1 Ensure Minikube is using your local Docker images
+\f3\fs26 \cf5 \CocoaLigature0 \
+eval $(minikube -p minikube docker-env)
+\f4\b0 \
+\
+
+\f3\b Without Minikube running:
+\f4\b0 \
+mohanty@Ashutoshs-MacBook-Air ~ % docker version\
+Client: Docker Engine - Community\
+ Version:           28.0.1\
+ API version:       1.48\
+ Go version:        go1.24.0\
+ Git commit:        068a01ea94\
+ Built:             Tue Feb 25 17:52:55 2025\
+ OS/Arch:           darwin/arm64\
+ Context:           default\
+Cannot connect to the Docker daemon at tcp://127.0.0.1:58749. Is the docker daemon running?\
+\
+
+\f3\b After executing:
+\f4\b0  
+\f3\b minikube start\
+
+\f4\b0 mohanty@Ashutoshs-MacBook-Air ~ % 
+\f3\b docker version
+\f4\b0 \
+Client: Docker Engine - Community\
+ Version:           28.0.1\
+ API version:       1.47 (downgraded from 1.48)\
+ Go version:        go1.24.0\
+ Git commit:        068a01ea94\
+ Built:             Tue Feb 25 17:52:55 2025\
+ OS/Arch:           darwin/arm64\
+ Context:           default\
+\
+Server: Docker Engine - Community\
+ Engine:\
+  Version:          27.4.0\
+  API version:      1.47 (minimum version 1.24)\
+  Go version:       go1.22.10\
+  Git commit:       92a8393\
+  Built:            Sat Dec  7 10:38:22 2024\
+  OS/Arch:          linux/arm64\
+  Experimental:     false\
+ containerd:\
+  Version:          v1.7.23\
+  GitCommit:        57f17b0a6295a39009d861b89e3b3b87b005ca27\
+ runc:\
+  Version:          1.2.3\
+  GitCommit:        0d37cfd4b557771e555a184d5a78d0ed4bdb79a5\
+ docker-init:\
+  Version:          0.19.0\
+  GitCommit:        de40ad0\
+\
+Explained in easy language:\
+\
+So basically, we have installed Docker CLI tool by executing \'93brew install docker\'94 -> this installed the Client v28.0.1\
+\
+Then installing minikube along with qemu(virtualisation driver), \
+Minikube installed a docker daemon (engine) which is running the docker server v27.4.0\
+Now, we can use Docker client, our bash tool in order to pull any image \
+\
+Minikube also installed Kubernetes engine, so we can create clusters, run pods, deploy applications at scale using manifest file.\
+\
+All these are a free alternative to Docker desktop.\
+Docker desktop basically packages both client and server and provides an easy-to-setup alternative. But it\'92s commercially chargeable.\
+\
+In short, \
+
+\f3\b Installations:
+\f4\b0 \
+\pard\pardeftab720\partightenfactor0
+
+\f5\fs28 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 brew install docker  (to install the docker client)\
+brew install miniqube (to install docker daemon or server, along with loads of kubernetes feature)\
+brew install qemu (to install the qemu2 virtualisation driver)\
+\
+Point minikube docker daemon to docker-cli :\
+eval $(minikube -p minikube docker-env)\
+\
+Start the docker server by starting minikube:\
+minikube start --driver qemu --memory=4Gb\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f3\b\fs26 \cf5 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 minikube start --vm-driver=qemu\
+kubectl get nodes\
+
+\f4\b0 NAME       STATUS   ROLES           AGE   VERSION\
+minikube   Ready    control-plane   18h   v1.32.0
+\f5\fs28 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf4 \
+That's it, now run docker version, and see all the version info for both client and server.\
+Minikube also installs kubectl as a part of it\'92s dependency\
+\
+Problem: arangodb container was not accessible outside the Minikube environment.\
+\
+We need to run the arango db image in a container deployed inside the Kube node, so we need to write the deployment and service yaml files:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f3\b\fs26 \cf5 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 kubectl apply -f arango-db-deployment.yaml
+\f6\fs28 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1  \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f5\b0 \cf4 This creates a deployment and a service object inside the minikube cluster. But still the port was not accessible outside.\
+\pard\pardeftab720\partightenfactor0
+\cf4 \
+\pard\pardeftab720\partightenfactor0
+
+\f6\b \cf7 Working when port forwarding done:
+\f5\b0 \cf4 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f3\b\fs26 \cf5 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 kubectl port-forward svc/arangodb 8529:8529
+\f5\b0\fs28 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+\cf4 \cb3 View the Kubernetes dashboard using the command:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f6\b \cf4 minikube dashboard
+\f5\b0 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+What to do to make docker images deployed in minikube cluster:\
+
+\f6\b minikube start 
+\f5\b0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+
+\f3\b\fs26 \cf5 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 kubectl apply -f arango-db-deployment.yaml
+\f6\fs28 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1  
+\f5\b0 \
+
+\f3\b\fs26 \cf5 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 kubectl port-forward svc/arangodb 8529:8529\
+\
+minikube stop \
+\
+\
+=========================================================\
+Kubernetes Notes:\
+\
+
+\f4\b0 Node is the server component on which the containers run.\
+Node resides within the K8s cluster 
+\f7 \uc0\u9989 
+\f4 \
+\
+Sample K8S Node with 2 containers:\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f5\fs28 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 {{\NeXTGraphic Pasted Graphic 1.png \width6880 \height8840 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\pardeftab720\partightenfactor0
+\cf4 \
+\
+For Application Data storage, we use volumes in k8s.\
+This can be within k8s cluster or outside cloud/on-prem service. \
+\
+Service has 2 functionality:\
+-Permanent IP\
+-Load balancer \
+\
+For Application Data persistence, we can create a pod of database.\
+This is executed using stateful sets. It takes care of reading and writing operations.\
+It will be responsible for data integrity. \
+Deploying Stateful Set are not easy, no normally we use external database service. \
+\
+So, we use Deployment for StateLESS apps, and StatefulSet for StateFULL apps.\
+As shown in below diagram:\
+\pard\pardeftab720\partightenfactor0
+\cf4 {{\NeXTGraphic Pasted Graphic 2.png \width9500 \height8340 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\pardeftab720\partightenfactor0
+\cf4                                                      \
+\
+Pods are abstraction of containers \
+\
+\
+In k8s we have master (Control Plane) node and worker nodes \
+\
+In Worker nodes below 3 processes must be installed:\
+1. Kubelet \
+2. Kube-proxy \
+3. Container Runtime : runs container (Docker, Containerd)\
+\pard\pardeftab720\partightenfactor0
+\cf4 {{\NeXTGraphic Pasted Graphic.png \width5580 \height7660 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\pard\pardeftab720\partightenfactor0
+\cf4 \
+Kubelet: Interacts with both container and container runtime. It starts the pod with a container inside\
+\
+\
+How do we interact with this cluster ?\
+How to:\
+- schedule pod ?\
+- monitor ?\
+- reschedule/re-start pod ?\
+- join a new Node ?\
+\
+This all are done by Master node or Control Plane node as renamed:\
+Master (Control Plane) node installed services :\
+
+\f6\b 1. Kube-api-server
+\f5\b0 \
+This is used to connect with client, acts as a cluster gateway. Acts as gatekeeper for authentication.\
+When we want to deploy any service, pods, we need to talk to api-server, which will then forward the request to other services to deploy service.\
+One entry point to ever request.\
+	\
+
+\f6\b 2. Kube scheduler
+\f5\b0 \
+After api request is validated, it\'92s forwarded to scheduler.\
+It has an intelligent way of scheduling where the next pod will be scheduled.\
+Based, on worker node\'92s cpu usage and other resources.\
+Scheduler does the planning, the work is executed by kubelet \
+\
+
+\f6\b 3. Control manager
+\f5\b0 \
+When pods die in any node, it detects state changes (crashing of pods) and tries to recover the cluster state.\
+It requests to scheduler to restart and recover services which crashed.\
+\
+
+\f6\b 4. Etcd:
+\f5\b0 \
+It\'92s a cluster brain. Every change in the cluster gets saved in this key value store.\
+All other components refer etcd data to make their functions. \
+Only application data is not stored in etcd.\
+It\'92s only used by master(control plane) processes to work with Worker nodes. \
+\
+In practice, k8s clusters is made up of multiple master nodes. API server is load balanced, etcd storage is distributed across all master nodes. \
+\
+\pard\tx0\pardeftab720\partightenfactor0
+\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf4 {{\NeXTGraphic 1__#$!@%!#__Pasted Graphic 1.png \width7820 \height9820 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\
+\
+\
+
+\f6\b\fs30 Minikube :
+\f5\b0\fs28 \
+\
+One Node k8s cluster, where master and worker processes run on one node.\
+It has Docker container pre-installed. \
+It creates a Virtual box on your laptop, and One node runs inside the Virtual box.\
+\
+\pard\pardeftab720\partightenfactor0
+\cf4 {{\NeXTGraphic 1__#$!@%!#__Pasted Graphic 2.png \width4320 \height6520 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\pardeftab720\partightenfactor0
+\cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf4 \
+
+\f6\b Kubectl:
+\f5\b0 \
+\
+Command Line Tool for k8s clusters. Basically to talk to k8s cluster, we have to speak with the kube-api-server.\
+There are 3 ways to speak: 1. UI. 2. API. 3. Kubectl \
+It can be used to create.update/delete components in the worker node. \
+Commands:\
+kubectl apply -f \{deployment-yaml\} \
+kubectl get nodes \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs26 \cf5 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 kubectl get services
+\f5\fs28 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\
+\
+Pod is the smallest unit of k8s cluster. We do not create Pod directly, we use the abstraction over pod called Deployments. Deployment is the blueprint to create the pods. \
+\
+To create a nginx server as a deployment: \
+
+\f6\b kubectl create deployment ngnix-depl \'97image=nginx
+\f5\b0 \
+Most default way of deploying. All default values. \
+\
+kubectl get replicaset\
+\
+
+\f6\b Deployment
+\f5\b0  manages a ReplicaSet,\
+
+\f6\b ReplicaSet
+\f5\b0  manages a Pod, \
+
+\f6\b Pod
+\f5\b0  is an abstraction of a Docker Container \
+\
+To generate the deployment file of an existing deployment\
+kubectl edit deployment \{deployment-name\}\
+\
+Logs:\
+kubectl logs \{pod-name\}\
+\
+Delete deployment:\
+kubectl delete deployment \{deployment-name\}
+\f6\b \
+\
+Ingress configuration in minikube:\
+
+\f4\b0\fs26 \cf5 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 minikube addons enable ingress
+\f6\b\fs28 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+
+\f4\b0\fs26 \cf5 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 kubectl -n ingress-nginx get pods
+\f5\fs28 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1  \
+\
+Minikube ip: 
+\f4\fs26 \cf5 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 10.0.2.15\
+\
+sudo nano /etc/hosts\
+10.0.2.15  nginx.local\
+\
+
+\f3\b Working code:
+\f4\b0 \
+kubectl port-forward svc/nginx-service 
+\f3\b 8080
+\f4\b0 :
+\f3\b \cf10 80\
+\cf4 Port on left: localhost port\
+Port on right: container port\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f6\fs28 \cf4 \cb3 \expnd0\expndtw0\kerning0
+\CocoaLigature1 Kubernetes YAML configuration files:\
+
+\f5\b0 Every configuration file has 3 parts:\
+1) metadata\
+2) specification\
+3) status (auto-generated by k8s)\
+\
+Deployment file is the blueprint for a pod \
+\
+Metadata contains the labels and specifications part contains the selectors \
+\
+Generate yaml:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f4\fs26 \cf5 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 kubectl get deployment nginx-deployment -o yaml\
+\
+
+\f3\b\fs28 Demo project : mongodb and mongoExpress
+\fs26 \
+\
+
+\f4\b0 2 Deployments/ Pod\
+2 Service\
+1 Config Map\
+1 Secret\
+\
+Config Map will contain Database URL\
+Secret will contain the database credentials }
